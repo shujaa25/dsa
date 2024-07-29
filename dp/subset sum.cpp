@@ -2,16 +2,16 @@
 class Solution{   
 public:
 
-    bool solve(vector<int> A, int sum, int n, vector<vector<int>>& dp){
+    bool subsetSum(vector<int> A, int sum, int n, vector<vector<int>>& dp){
         
         if(dp[sum][n] != -1) return dp[sum][n];
         
         
         if(A[n-1] > sum){
-            return dp[sum][n]=solve(A, sum, n-1, dp);
+            return dp[sum][n]=subsetSum(A, sum, n-1, dp);
         }
         
-        return dp[sum][n]=(solve(A, sum, n-1, dp) || solve(A, sum-A[n-1], n-1, dp));
+        return dp[sum][n]=(subsetSum(A, sum, n-1, dp) || subsetSum(A, sum-A[n-1], n-1, dp));
     }
 
     bool isSubsetSum(vector<int>arr, int sum){
@@ -27,6 +27,6 @@ public:
             }
         }
         
-        return solve(arr, sum, arr.size(), dp);
+        return subsetSum(arr, sum, arr.size(), dp);
     }
 };
