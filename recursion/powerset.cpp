@@ -1,6 +1,20 @@
 #include<iostream>
-
+#include<vector>
 using namespace std;
+
+vector<vector<int>> powerset(vector<int>& nums, int i,
+        vector<int> curr, vector<vector<int>> &res){
+
+        if(i==nums.size()){
+            res.push_back(curr);
+        }else{
+            powerset(nums, i+1, curr, res);
+            curr.push_back(nums[i]);
+            powerset(nums, i+1, curr, res);
+        }
+	
+        return res;
+    }
 
 void powerset(string s, int i, string curr){
 	if(i==s.length()){
